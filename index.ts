@@ -9,9 +9,8 @@ dotenv.config({ path: ".env" });
 
 // Connecting to MongoDB
 mongoose.Promise = global.Promise;
-//const DB_CON: String = process.env.DB_CONNECTION; 
 
-mongoose.connect("mongodb://localhost:27017/restapi", {
+mongoose.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true,
 } as any);
 

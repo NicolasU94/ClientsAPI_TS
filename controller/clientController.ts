@@ -1,10 +1,9 @@
-// const Clients = require("../models/Clients");
 import { Request, Response, NextFunction } from "express";
-import Clientes from "../models/Clients";
+import Clients from "../models/Clients";
 
-const clienteController = {
+const clientController = {
 newClient: async (req: Request, res: Response) => {
-  const client = new Clientes(req.body);
+  const client = new Clients(req.body);
 
   try {
     await client.save();
@@ -16,7 +15,7 @@ newClient: async (req: Request, res: Response) => {
   },
   getClients: async (req: Request, res: Response) => {
   try {
-    const clients = await Clientes.find({});
+    const clients = await Clients.find({});
     console.log(clients);
     res.json(clients);
   } catch (error) {
@@ -24,7 +23,7 @@ newClient: async (req: Request, res: Response) => {
   }
   },
 getClientById: async (req: Request, res: Response, next: NextFunction) => {
-  const client = await Clientes.findById(req.params.id);
+  const client = await Clients.findById(req.params.id);
 
   if (!client) {
     res.status(404).json({ message: "Client Not Found" });
@@ -34,7 +33,7 @@ getClientById: async (req: Request, res: Response, next: NextFunction) => {
   },
   updateClientById: async (req: Request, res: Response) => {
     try {
-      const client = await Clientes.findOneAndUpdate(
+      const client = await Clients.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -47,7 +46,7 @@ getClientById: async (req: Request, res: Response, next: NextFunction) => {
   },
   deleteClientById: async (req: Request, res: Response) => {
   try {
-    await Clientes.findOneAndDelete({ _id: req.params.id });
+    await Clients.findOneAndDelete({ _id: req.params.id });
     res.json({ message: "Client Deleted Successfully" });
   } catch (error) {
     res.status(500).send(error);
@@ -55,4 +54,4 @@ getClientById: async (req: Request, res: Response, next: NextFunction) => {
 }
 }
 
-export default clienteController;
+export default clientController;

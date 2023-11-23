@@ -1,0 +1,1 @@
+{"version":3,"file":"clientController.d.ts","sourceRoot":"","sources":["../../controller/clientController.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAG1D,QAAA,MAAM,gBAAgB;qBACC,OAAO,OAAO,QAAQ;sBAWnB,OAAO,OAAO,QAAQ;yBASrB,OAAO,OAAO,QAAQ,QAAQ,YAAY;4BASrC,OAAO,OAAO,QAAQ;4BAatB,OAAO,OAAO,QAAQ;CAQrD,CAAA;AAED,eAAe,gBAAgB,CAAC"}

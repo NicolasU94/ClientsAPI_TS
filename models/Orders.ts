@@ -2,28 +2,28 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
 
 interface ProductOrder {
-  producto: Types.ObjectId;
-  cantidad: number;
+  product: Types.ObjectId;
+  amount: number;
 }
 
 interface Order extends Document{
-  cliente: Types.ObjectId;
-  pedido: ProductOrder[];
+  client: Types.ObjectId;
+  order: ProductOrder[];
   total: number;
 }
 
-const pedidosSchema = new Schema({
-  cliente: {
+const ordersSchema = new Schema({
+  client: {
     type: Schema.Types.ObjectId,
-    ref: "Clientes",
+    ref: "Clients",
   },
-  pedido: [
+  order: [
     {
-      producto: {
+      product: {
         type: Schema.Types.ObjectId,
-        ref: "Productos",
+        ref: "Products",
       },
-      cantidad: Number,
+      amount: Number,
     },
   ],
   total: {
@@ -32,4 +32,4 @@ const pedidosSchema = new Schema({
 });
 
 
-export default mongoose.model<Order>('Pedidos', pedidosSchema);
+export default mongoose.model<Order>('Orders', ordersSchema);

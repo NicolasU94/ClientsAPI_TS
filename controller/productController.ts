@@ -1,10 +1,7 @@
 import { Request,Response, NextFunction } from 'express';
-import Productos from '../models/Productos';
-// const Productos = require("../models/Productos");
+import Products from '../models/Products';
 import multer, {diskStorage} from 'multer';
-// const multer = require("multer");
 import shortid from 'shortid';
-// const shortid = require("shortid");
 
 const storage = diskStorage({
   destination: (req, file, cb) => {
@@ -31,13 +28,13 @@ const configuracionMulter = {
 const upload = multer(configuracionMulter).single("imagen");
 
 
-const productoController = {
+const productController = {
 
 //Uploading a file
-  subirArchivo: (req: Request, res: Response, next: NextFunction) => {
+  uploadFile: (req: Request, res: Response, next: NextFunction) => {
   upload(req, res, function (err) {
     if (err) {
-      res.status(500).json({ mensaje: err });
+      res.status(500).json({ message: err });
     } else {
       return next();
     }
@@ -45,7 +42,7 @@ const productoController = {
 },
 
 newProduct: async (req: Request, res: Response) => {
-  const product = new Productos(req.body);
+  const product = new Products(req.body);
 
   try {
     if (req.file?.filename) {
@@ -60,7 +57,7 @@ newProduct: async (req: Request, res: Response) => {
 
 getProducts: async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const products = await Productos.find({});
+    const products = await Products.find({});
     res.json(products);
   } catch (error) {
     res.status(500).send(error);
@@ -70,7 +67,7 @@ getProducts: async (req: Request, res: Response, next: NextFunction) => {
 searchProducts: async (req: Request, res: Response, next: NextFunction) => {
   try {
     const query = req.params?.query as string;
-    const product = await Productos.find({ nombre: new RegExp(query, "i") });
+    const product = await Products.find({ name: new RegExp(query, "i") });
     res.json(product);
   } catch (error) {
     res.status(500).send(error);
@@ -79,10 +76,10 @@ searchProducts: async (req: Request, res: Response, next: NextFunction) => {
 
 getProductById: async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const product = await Productos.findById(req.params.id);
+    const product = await Products.findById(req.params.id);
     console.log(product);
     if (!product) {
-      res.status(404).json({ mensaje: "Product Not Found" });
+      res.status(404).json({ message: "Product Not Found" });
       return next();
     }
     res.json(product);
@@ -94,7 +91,7 @@ getProductById: async (req: Request, res: Response, next: NextFunction) => {
 updateProductById: async (req: Request, res: Response) => {
   try {
     //Attempting to find a product by its ID
-    let prevProduct = await Productos.findById(req.params.id);
+    let prevProduct = await Products.findById(req.params.id);
 
     // Building a new Product Object
     let newProduct = req.body;
@@ -105,7 +102,7 @@ updateProductById: async (req: Request, res: Response) => {
     }
 
     //Updating the Product Object
-    const product = await Productos.findOneAndUpdate(
+    const product = await Products.findOneAndUpdate(
       { _id: req.params.id },
       newProduct,
       { new: true }
@@ -118,7 +115,7 @@ updateProductById: async (req: Request, res: Response) => {
 
 deleteProductById: async (req: Request, res: Response) => {
   try {
-    await Productos.findOneAndDelete({ _id: req.params.id });
+    await Products.findOneAndDelete({ _id: req.params.id });
     res.json({ message: "Product Deleted Successfully" });
   } catch (error) {
     res.status(500).send(error);
@@ -128,7 +125,7 @@ deleteProductById: async (req: Request, res: Response) => {
 }
 
 
-export default productoController;
+export default productController;
 
 
 
