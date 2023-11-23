@@ -22,7 +22,7 @@ npm install - To install the project dependencies
 npm build - To Compile Typescript code and copy necessary folders into Dist
 
 ```
-npm run start - To run the project locally
+npm run startup - To run the project locally
 ```
 
 ## Additional Considerations
