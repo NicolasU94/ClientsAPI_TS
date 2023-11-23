@@ -3,17 +3,17 @@ import mongoose, {Schema, Document} from "mongoose";
 
 
 interface Product extends Document{
-  nombre: string;
-  precio: number;
+  name: string;
+  price: number;
   imagen: string;
 }
 
-const productosSchema = new Schema({
-  nombre: {
+const productsSchema = new Schema({
+  name: {
     type: String,
     trim: true,
   },
-  precio: {
+  price: {
     type: Number,
   },
   imagen: {
@@ -21,4 +21,4 @@ const productosSchema = new Schema({
   },
 });
 
-export default mongoose.model<Product>('Productos', productosSchema);
+export default mongoose.model<Product>('Products', productsSchema);

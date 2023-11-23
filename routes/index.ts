@@ -1,54 +1,52 @@
 import express, { Router } from "express";
-import clienteController from "../controller/clienteController";
-import productoController from "../controller/productoController";
-import pedidoController from "../controller/pedidoController";
-import usuarioController from "../controller/usuarioController";
+import clientController from "../controller/clientController";
+import productController from "../controller/productController";
+import orderController from "../controller/orderController";
+import userController from "../controller/userController";
 
 const router: Router = express.Router();
 
 // Middleware for Route Protection
-// const auth = require("../middleware/auth");
-
 import auth from '../middleware/auth';
 
 export default function (): Router {
   // Define Client Routes
-  router.post("/clientes", auth, clienteController.newClient);
-  router.get("/clientes", auth, clienteController.getClients);
-  router.get("/clientes/:id", auth, clienteController.getClientById);
-  router.put("/clientes/:id", auth, clienteController.updateClientById);
-  router.delete("/clientes/:id", auth, clienteController.deleteClientById);
+  router.post("/clients", auth, clientController.newClient);
+  router.get("/clients", auth, clientController.getClients);
+  router.get("/clients/:id", auth, clientController.getClientById);
+  router.put("/clients/:id", auth, clientController.updateClientById);
+  router.delete("/clients/:id", auth, clientController.deleteClientById);
 
   // Define Product Routes
   router.post(
-    "/productos",
+    "/products",
     auth,
-    productoController.subirArchivo,
-    productoController.newProduct
+    productController.uploadFile,
+    productController.newProduct
   );
-  router.get("/productos", auth, productoController.getProducts);
-  router.get("/productos/:id", auth, productoController.getProductById);
+  router.get("/products", auth, productController.getProducts);
+  router.get("/products/:id", auth, productController.getProductById);
   router.post(
-    "/productos/busqueda/:query",
+    "/products/search/:query",
     auth,
-    productoController.searchProducts
+    productController.searchProducts
   );
   router.put(
-    "/productos/:id",
+    "/products/:id",
     auth,
-    productoController.subirArchivo,
-    productoController.updateProductById
+    productController.uploadFile,
+    productController.updateProductById
   );
-  router.delete("/productos/:id", auth, productoController.deleteProductById);
+  router.delete("/products/:id", auth, productController.deleteProductById);
 
   // Define Orders
-  router.post("/pedidos", auth, pedidoController.newPedido);
-  router.get("/pedidos", auth, pedidoController.getPedidos);
-  router.get("/pedidos/:id", auth, pedidoController.getPedidoById);
-  router.put("/pedidos/:id", auth, pedidoController.updatePedidoById);
-  router.delete("/pedidos/:id", auth, pedidoController.deletePedidoById);
+  router.post("/orders", auth, orderController.newOrder);
+  router.get("/orders", auth, orderController.getOrders);
+  router.get("/orders/:id", auth, orderController.getOrderById);
+  router.put("/orders/:id", auth, orderController.updateOrderById);
+  router.delete("/orders/:id", auth, orderController.deleteOrderById);
 
-  router.post("/register", usuarioController.registerUser);
-  router.post("/login", usuarioController.authenticateUser);
+  router.post("/register", userController.registerUser);
+  router.post("/login", userController.authenticateUser);
   return router;
 }

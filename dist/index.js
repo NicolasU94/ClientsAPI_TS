@@ -11,7 +11,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config({ path: ".env" });
 mongoose_1.default.Promise = global.Promise;
-mongoose_1.default.connect("mongodb://localhost:27017/restapi", {
+mongoose_1.default.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
 });
 const app = (0, express_1.default)();

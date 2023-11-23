@@ -4,20 +4,20 @@ import mongoose, {Schema, Document} from "mongoose";
 
 interface User extends Document{
   email: string;
-  nombre: string;
+  name: string;
   password: string;
 }
 
-const usuariosSchema = new Schema({
+const usersSchema = new Schema({
   email: {
     type: String,
     unique: true,
     lowercase: true,
     trim: true,
   },
-  nombre: {
+  name: {
     type: String,
-    required: "Agrega tu nombre",
+    required: "Add your name",
   },
   password: {
     type: String,
@@ -25,4 +25,4 @@ const usuariosSchema = new Schema({
   },
 });
 
-export default mongoose.model<User>('Usuarios', usuariosSchema);
+export default mongoose.model<User>('Users', usersSchema);
