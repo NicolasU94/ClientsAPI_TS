@@ -1,0 +1,53 @@
+{
+  "name": "restapinicolas",
+  "version": "1.0.0",
+  "description": "REST API Project",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js",
+    "startup": "node dist/index.js",
+    "build": "tsc && npm run copy-files",
+    "copy-files": "copyfiles -u 1 uploads/** dist/uploads"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcosb74/RESTAPINicolas.git"
+  },
+  "keywords": [
+    "REST",
+    "API",
+    "NODE",
+    "JS"
+  ],
+  "author": "Nicolas Ugarte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcosb74/RESTAPINicolas/issues"
+  },
+  "homepage": "https://github.com/marcosb74/RESTAPINicolas#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.2.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.1",
+    "@types/body-parser": "^1.19.4",
+    "@types/cors": "^2.8.15",
+    "@types/express": "^4.17.20",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/mongoose": "^5.11.97",
+    "@types/multer": "^1.4.10",
+    "@types/shortid": "^0.0.32",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.2.2"
+  }
+}
