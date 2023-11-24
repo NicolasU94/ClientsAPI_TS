@@ -46,7 +46,6 @@ updateOrderById: async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Building a new Product Object
     let newOrder = req.body;
-
     //Updating the Product Object
     const order = await Orders.findOneAndUpdate(
       { _id: req.params.id },
@@ -58,7 +57,11 @@ updateOrderById: async (req: Request, res: Response, next: NextFunction) => {
         path: "order.product",
         model: "Products",
       });
-    res.json(order);
+    if (!order) {
+      res.status(404).json({ message: "Order Not found" });
+    } else {
+      res.json(order);
+    }
   } catch (error) {
     res.status(500).send(error);
     next();
@@ -67,8 +70,12 @@ updateOrderById: async (req: Request, res: Response, next: NextFunction) => {
 
 deleteOrderById: async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await Orders.findOneAndDelete({ _id: req.params.id });
-    res.json({ message: "Order Deleted Successfully" });
+    const result: null | string = await Orders.findOneAndDelete({ _id: req.params.id });
+    if (!result) {
+      res.status(404).json({ message: "Order Not found" });
+    } else {
+      res.json({ message: "Order Deleted Successfully" });  
+    }
   } catch (error) {
     res.status(500).send(error);
     next();

@@ -24,8 +24,24 @@ const port: number = parseInt(process.env.PORT, 10);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
+const whitelist: [string] = [process.env.FRONTEND_URL];
+const corsOptions: {} = {
+  origin: (origin : string, callback: Function) => {
+    const exists: boolean = whitelist.some((domain) => domain === origin);
+    if (exists) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS')); 
+    }
+  },
+}*/
+
 // Enabling CORS
 app.use(cors());
+
+//Defining the Whitelist
+
 
 app.use("/", routes());
 

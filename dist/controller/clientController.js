@@ -37,7 +37,12 @@ const clientController = {
     updateClientById: async (req, res) => {
         try {
             const client = await Clients_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
-            res.json(client);
+            if (!client) {
+                res.status(404).json({ message: "Client Not found" });
+            }
+            else {
+                res.json(client);
+            }
         }
         catch (error) {
             res.status(500).send(error);
@@ -46,8 +51,13 @@ const clientController = {
     },
     deleteClientById: async (req, res) => {
         try {
-            await Clients_1.default.findOneAndDelete({ _id: req.params.id });
-            res.json({ message: "Client Deleted Successfully" });
+            const result = await Clients_1.default.findOneAndDelete({ _id: req.params.id });
+            if (!result) {
+                res.status(404).json({ message: "Client Not found" });
+            }
+            else {
+                res.json({ message: "Client Deleted Successfully" });
+            }
         }
         catch (error) {
             res.status(500).send(error);

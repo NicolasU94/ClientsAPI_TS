@@ -38,7 +38,11 @@ getClientById: async (req: Request, res: Response, next: NextFunction) => {
       req.body,
       { new: true }
     );
-    res.json(client);
+      if (!client) {
+        res.status(404).json({ message: "Client Not found" })
+      } else {
+        res.json(client);    
+      }
   } catch (error) {
     res.status(500).send(error);
     console.log(error);
@@ -46,8 +50,12 @@ getClientById: async (req: Request, res: Response, next: NextFunction) => {
   },
   deleteClientById: async (req: Request, res: Response) => {
   try {
-    await Clients.findOneAndDelete({ _id: req.params.id });
-    res.json({ message: "Client Deleted Successfully" });
+    const result: null | string = await Clients.findOneAndDelete({ _id: req.params.id });
+    if (!result) {
+      res.status(404).json({ message: "Client Not found" });
+    } else {
+      res.json({ message: "Client Deleted Successfully" });  
+    }
   } catch (error) {
     res.status(500).send(error);
   }

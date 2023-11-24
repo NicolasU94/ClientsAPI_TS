@@ -54,7 +54,12 @@ const orderController = {
                 path: "order.product",
                 model: "Products",
             });
-            res.json(order);
+            if (!order) {
+                res.status(404).json({ message: "Order Not found" });
+            }
+            else {
+                res.json(order);
+            }
         }
         catch (error) {
             res.status(500).send(error);
@@ -63,8 +68,13 @@ const orderController = {
     },
     deleteOrderById: async (req, res, next) => {
         try {
-            await Orders_1.default.findOneAndDelete({ _id: req.params.id });
-            res.json({ message: "Order Deleted Successfully" });
+            const result = await Orders_1.default.findOneAndDelete({ _id: req.params.id });
+            if (!result) {
+                res.status(404).json({ message: "Order Not found" });
+            }
+            else {
+                res.json({ message: "Order Deleted Successfully" });
+            }
         }
         catch (error) {
             res.status(500).send(error);

@@ -16,18 +16,27 @@ const ordersSchema = new Schema({
   client: {
     type: Schema.Types.ObjectId,
     ref: "Clients",
+    required: true
   },
-  order: [
-    {
-      product: {
-        type: Schema.Types.ObjectId,
-        ref: "Products",
+  order: {
+    type: [
+      {
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "Products",
+          required: true
+        },
+        amount: {
+          type: Number,
+          required: true
+        }
       },
-      amount: Number,
-    },
-  ],
+    ],
+    required: true
+  },
   total: {
     type: Number,
+    required: true
   },
 });
 

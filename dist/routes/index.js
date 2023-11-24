@@ -27,7 +27,7 @@ function default_1() {
     router.get("/orders/:id", auth_1.default, orderController_1.default.getOrderById);
     router.put("/orders/:id", auth_1.default, orderController_1.default.updateOrderById);
     router.delete("/orders/:id", auth_1.default, orderController_1.default.deleteOrderById);
-    router.post("/register", userController_1.default.registerUser);
+    router.post("/signup", userController_1.default.registerUser);
     router.post("/login", userController_1.default.authenticateUser);
     return router;
 }
