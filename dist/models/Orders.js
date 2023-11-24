@@ -28,18 +28,27 @@ const ordersSchema = new mongoose_1.Schema({
     client: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: "Clients",
+        required: true
     },
-    order: [
-        {
-            product: {
-                type: mongoose_1.Schema.Types.ObjectId,
-                ref: "Products",
+    order: {
+        type: [
+            {
+                product: {
+                    type: mongoose_1.Schema.Types.ObjectId,
+                    ref: "Products",
+                    required: true
+                },
+                amount: {
+                    type: Number,
+                    required: true
+                }
             },
-            amount: Number,
-        },
-    ],
+        ],
+        required: true
+    },
     total: {
         type: Number,
+        required: true
     },
 });
 exports.default = mongoose_1.default.model('Orders', ordersSchema);

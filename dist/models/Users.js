@@ -30,6 +30,7 @@ const usersSchema = new mongoose_1.Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        required: true
     },
     name: {
         type: String,

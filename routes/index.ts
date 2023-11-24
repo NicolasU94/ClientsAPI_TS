@@ -46,7 +46,7 @@ export default function (): Router {
   router.put("/orders/:id", auth, orderController.updateOrderById);
   router.delete("/orders/:id", auth, orderController.deleteOrderById);
 
-  router.post("/register", userController.registerUser);
+  router.post("/signup", userController.registerUser);
   router.post("/login", userController.authenticateUser);
   return router;
 }
