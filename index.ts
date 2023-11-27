@@ -1,11 +1,13 @@
 import dotenv from "dotenv";
 import express, { Express } from "express";
+import path from 'path';
 import routes from "./routes/index";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 
 dotenv.config({ path: ".env" });
+
 
 // Connecting to MongoDB
 mongoose.Promise = global.Promise;
@@ -46,7 +48,10 @@ app.use(cors());
 app.use("/", routes());
 
 // Public Folder Setup
-app.use(express.static("uploads"));
+//app.use(express.static("uploads"));
+const dirPath = path.join(__dirname, 'uploads');
+console.log(dirPath);
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Setting the port to listen
 app.listen(port, () => {

@@ -32,7 +32,7 @@ const usersSchema = new mongoose_1.Schema({
         trim: true,
         required: true
     },
-    name: {
+    username: {
         type: String,
         required: "Add your name",
     },
