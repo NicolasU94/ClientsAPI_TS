@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "6560ebe4688eaa0c80e92bdd"
+  },
+  "name": "Camisa CSS Redux",
+  "price": 300,
+  "imagen": "4ypqInYge.jpeg",
+  "__v": 0
+}]

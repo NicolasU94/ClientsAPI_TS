@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "6564de38468b20345c7d3ceb"
+  },
+  "client": {
+    "$oid": "6560e774b3b9d3c2b1f25b43"
+  },
+  "order": [
+    {
+      "product": {
+        "$oid": "6560ebe4688eaa0c80e92bdd"
+      },
+      "amount": 2,
+      "_id": {
+        "$oid": "6560ebe4688eaa0c80e92bdd"
+      }
+    }
+  ],
+  "total": 400,
+  "__v": 0
+}]

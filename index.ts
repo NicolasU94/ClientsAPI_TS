@@ -21,6 +21,7 @@ const app: Express = express();
 
 // Setting up the port
 const port: number = parseInt(process.env.PORT, 10);
+const host: string = process.env.HOST || '0.0.0.0';
 
 // Enabling bodyParser
 app.use(bodyParser.json());
@@ -54,6 +55,6 @@ console.log(dirPath);
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Setting the port to listen
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`Server is running on port ${port}`);
 });
