@@ -20,7 +20,7 @@ mongoose.connect(process.env.DB_CONNECTION, {
 const app: Express = express();
 
 // Setting up the port
-const port: number = parseInt(process.env.PORT, 10);
+const port: number = parseInt(process.env.PORT, 10) || 3000;
 const host: string = process.env.HOST || '0.0.0.0';
 
 // Enabling bodyParser
