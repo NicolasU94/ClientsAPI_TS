@@ -16,7 +16,7 @@ mongoose_1.default.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
 });
 const app = (0, express_1.default)();
-const port = parseInt(process.env.PORT, 10);
+const port = parseInt(process.env.PORT, 10) || 3000;
 const host = process.env.HOST || '0.0.0.0';
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
