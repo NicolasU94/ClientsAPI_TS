@@ -6,8 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js",
-    "startup": "node dist/index.js",
+    "startup": "nodemon ./index.js",
+    "start": "node dist/index.js",
     "compile": "tsc && npm run copy-files",
     "copy-files": "copyfiles -u 1 ./uploads/** ./dist/uploads"
   },
