@@ -20,8 +20,8 @@ mongoose.connect(process.env.DB_CONNECTION, {
 const app: Express = express();
 
 // Setting up the port
-const port: number = parseInt(process.env.PORT, 10) || 3000;
-const host: string = process.env.HOST || '0.0.0.0';
+const PORT: number = parseInt(process.env.PORT) || 3000;
+const HOST: string = '0.0.0.0';
 
 // Enabling bodyParser
 app.use(bodyParser.json());
@@ -55,6 +55,6 @@ console.log(dirPath);
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Setting the port to listen
-app.listen(port, host, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

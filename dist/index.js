@@ -16,8 +16,8 @@ mongoose_1.default.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
 });
 const app = (0, express_1.default)();
-const port = parseInt(process.env.PORT, 10) || 3000;
-const host = process.env.HOST || '0.0.0.0';
+const PORT = parseInt(process.env.PORT) || 3000;
+const HOST = '0.0.0.0';
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
@@ -25,7 +25,7 @@ app.use("/", (0, index_1.default)());
 const dirPath = path_1.default.join(__dirname, 'uploads');
 console.log(dirPath);
 app.use(express_1.default.static(path_1.default.join(__dirname, 'uploads')));
-app.listen(port, host, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 //# sourceMappingURL=index.js.map
